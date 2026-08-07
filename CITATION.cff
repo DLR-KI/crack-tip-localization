@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Update CITATION.cff via web application (GUI):
+# https://citation-file-format.github.io/cff-initializer-javascript/#/update
+#
+cff-version: 1.2.0
+title: crackmnist-eccv
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Nicoleta
+    family-names: Gorea
+    affiliation: German Aerospace Center (DLR)
+  - given-names: Lorenzo
+    family-names: Bonasera
+    affiliation: German Aerospace Center (DLR)
+  - given-names: David
+    family-names: Melching
+    affiliation: German Aerospace Center (DLR)
+  - given-names: Oscar Hernan
+    family-names: Ramírez-Agudelo
+    affiliation: German Aerospace Center (DLR)
+repository-code: 'https://github.com/DLR-KI/crack-tip-localization'
+url: 'https://www.dlr.de/en/ki'
+keywords:
+  - crack-tip detection
+  - data pollution
+  - robustness
+  - CrackMNIST
+  - deep learning
+  - DIC
+license: GPL-3.0-or-later
+version: 1.0.0
+date-released: '2026-06-15'

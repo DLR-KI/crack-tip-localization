@@ -1,0 +1,253 @@
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+[project]
+name = "crackmnist-eccv"
+version = "1.0.0"
+description = "Data-centric robustness benchmarking of a crack-tip detection model under artificial data pollution"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE.md", "LICENSES/*"]
+authors = [
+  {name = "Nicoleta Gorea", email = "nicoleta.gorea@dlr.de"}
+]
+maintainers = [
+  {name = "Nicoleta Gorea", email = "nicoleta.gorea@dlr.de"}
+]
+keywords = [
+  "crack-tip detection",
+  "data pollution",
+  "robustness",
+  "CrackMNIST",
+  "deep learning",
+  "DIC",
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+# Core runtime dependencies
+dependencies = [
+  "torch>=2.0",
+  "torchvision>=0.20.1",
+  "numpy>=1.26.4",
+  "pandas>=2.2.3",
+  "matplotlib>=3.5.1",
+  "seaborn",
+  "scipy",
+  "opencv-python",
+  "crackmnist==1.0.0",
+  "gitpython>=3.1.50",
+  "pillow>=12.2.0",
+  "pymdown-extensions>=11.0.0",
+  "setuptools>=83.0.0",
+]
+
+[project.urls]
+"Documentation" = "https://github.com/DLR-KI/crack-tip-localization"
+"Homepage" = "https://github.com/DLR-KI/crack-tip-localization"
+"Issue Tracker" = "https://github.com/DLR-KI/crack-tip-localization/issues"
+"Source Code" = "https://github.com/DLR-KI/crack-tip-localization"
+
+[dependency-groups]
+dev = [
+  "prek>=0.3.5",
+  "reuse>=6.2.0",
+  "ruff>=0.15.5",
+  "shellcheck-py",
+  "ty>=0.0.21",
+  "uv>=0.10.9",
+  "licensecheck"
+]
+test = [
+  "coverage",
+  "pytest",
+  "pytest-cov",
+]
+ci = [
+  "flake8",
+  "flake8-docstrings",
+  "flake8-docstrings-complete",
+  "flake8-gl-codeclimate",
+  "flake8-pyproject",
+  "pylint",
+  "pylint-gitlab",
+  "pylint-per-file-ignores",
+  "typos",
+]
+stubs = []
+doc = [
+    "mkdocs",
+    "mkdocs-awesome-pages-plugin",
+    "mkdocs-git-revision-date-localized-plugin",
+    "mkdocs-material",
+    "mkdocs-minify-plugin>=0.8.0",
+    "mkdocstrings",
+    "mkdocstrings-python",
+    "pymdown-extensions",
+    "mkdocs-coverage",
+    "mkdocs-api-autonav",
+]
+all = [
+  {include-group = "dev"},
+  {include-group = "test"},
+  {include-group = "ci"},
+  {include-group = "stubs"},
+  {include-group = "doc"},
+]
+
+[build-system]
+requires = ["uv_build>=0.10.0,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["crackmnist_eccv*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+crackmnist_eccv = ["py.typed"]
+
+[tool.uv]
+required-environments = [
+  "sys_platform == 'win32' and platform_machine == 'AMD64'",
+  "sys_platform == 'linux'",
+]
+
+########################################################################################################################
+
+# ruff
+# https://docs.astral.sh/ruff/settings/
+
+[tool.ruff]
+line-length = 90
+target-version = "py311"
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+extend-ignore = ["ANN003", "D100", "D212", "D418", "S101", "E203", "D105"]
+extend-select = ["B", "D", "E", "I", "UP", "Q", "TID252"]
+fixable = ["ALL"]
+preview = true
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+lines-after-imports = 2
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/test_*.py" = [
+  "S101",
+  "ANN201",
+  "ANN205",
+  "D",
+  "E501",
+  "PLR0904",
+  "PLC2701",
+  "PLC0415",
+  "PLR2004",
+  "SLF001",
+  "S307",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+########################################################################################################################
+
+# coverage
+# https://coverage.readthedocs.io/en/latest/config.html
+
+[tool.coverage.html]
+title = "Coverage report for crackmnist-eccv"
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "@overload",
+  "def __repr__",
+  "if self\\.debug",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if False:",
+  "if __name__ == .__main__.:",
+  "@(abc\\.)?abstractmethod",
+]
+ignore_errors = true
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+########################################################################################################################
+
+# pytest
+# https://docs.pytest.org/en/latest
+
+[tool.pytest.ini_options]
+addopts = "--cov=src/ --cov-report=term-missing --cov-report=xml:build/coverage.xml --cov-report=html:build/htmlcov --junitxml=build/report.xml"
+python_files = "test_*.py"
+testpaths = ["tests"]
+
+########################################################################################################################
+
+# flake8
+# https://flake8.pycqa.org/en/latest/user/configuration.html
+
+[tool.flake8]
+check-return-types = true
+extend-ignore = ["DCO010", "DCO060"]
+max-complexity = "10"
+max-line-length = "90"
+per-file-ignores = []
+select = "DCO, DOC"
+style = "google"
+
+########################################################################################################################
+
+# pylint
+# https://pylint.pycqa.org/en/latest/user_guide/run.html#command
+
+[tool.pylint.main]
+extension-pkg-allow-list = []
+load-plugins = ["pylint_per_file_ignores"]
+recursive = true
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = "C0114"
+max-line-length = "90"
+
+[tool.pylint.'MESSAGES CONTROL'.per-file-ignores]
+"tests/**/*" = "C0114,C0116,R0903,R0904,W0212"
+
+[tool.pylint.SIMILARITIES]
+ignore-comments = "yes"
+ignore-docstrings = "yes"
+ignore-imports = "yes"
+min-similarity-lines = 10
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", marker = "sys_platform == 'win32'" },
+]

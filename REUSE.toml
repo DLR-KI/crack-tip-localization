@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+version = 1
+SPDX-PackageName = "crackmnist-eccv"
+SPDX-PackageSupplier = ["2026 German Aerospace Center (DLR)"]
+SPDX-PackageDownloadLocation = "https://github.com/DLR-KI/crack-tip-localization"
+
+[[annotations]]
+path = ["uv.lock", ".copier-answers.yml", "results/.gitkeep"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["2026 German Aerospace Center (DLR)"]
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = [".gitignore", ".editorconfig", ".gitattributes", ".python-version"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["2026 German Aerospace Center (DLR)"]
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = ["README.md", "CITATION.cff", "LICENSE.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["2026 German Aerospace Center (DLR)"]
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ["tests/**/__pycache__/**", "**/__pycache__/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["2026 German Aerospace Center (DLR)"]
+SPDX-License-Identifier = "GPL-3.0-or-later"

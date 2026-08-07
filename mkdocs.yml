@@ -1,0 +1,125 @@
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
+# SPDX-License-Identifier: CC0-1.0
+#
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: Assessing the Data-Centric Robustness of a Crack Tip Detection Model through Artificial Data Pollution
+
+repo_name: crackmnist-eccv
+repo_url: https://github.com/DLR-KI/crack-tip-localization
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/.overrides
+  features:
+    - content.action.edit
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: teal
+      accent: deep purple
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: teal
+      accent: blue
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.blocks.details:
+  - pymdownx.blocks.tab:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - coverage:
+      html_report_dir: build/htmlcov
+  - api-autonav:
+      modules: [src/crackmnist_eccv]
+      exclude_private: true
+  - mkdocstrings:
+      enabled: !ENV [MKDOCSTRINGS_ENABLED, true]
+      handlers:
+        python:
+          inventories:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [std, py]
+            - https://typing-extensions.readthedocs.io/en/latest/objects.inv
+          options:
+            backlinks: tree
+            show_inheritance_diagram: true
+            heading_level: 2
+            parameter_headings: true
+            show_root_heading: true
+            show_category_heading: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            summary: true
+            show_if_no_docstring: true
+            line_length: 90
+            modernize_annotations: true
+            show_signature_annotations: true
+            separate_signature: true
+            show_overloads: true
+            signature_crossrefs: true
+  - minify:
+      minify_html: !ENV [DEPLOY, false]
+      htmlmin_opts:
+        remove_comments: true
+
+extra:
+  social:
+    - icon: dlr-logo
+      link: https://www.dlr.de/en
+    - icon: dlr-ki
+      link: https://www.dlr.de/en/ki
+    - icon: fontawesome/brands/square-github
+      link: https://github.com/DLR-KI
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/contrib/auto-render.min.js
+  - javascripts/katex.js
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css
+  - styles/styles.css
+
+copyright: |
+  &copy; 2026
+  <a href="https://www.dlr.de/en/ki" target="_blank" rel="noopener">
+    DLR KI
+  </a>
