@@ -15,7 +15,7 @@ This project provides a few different tests and checks.
 In general, we have two files which define all the tests:
 
 - [prek.toml](https://github.com/DLR-KI/crack-tip-localization/blob/main/prek.toml)
-- CI pipeline: [.gitlab-ci.yml](https://github.com/DLR-KI/crack-tip-localization/blob/main/.gitlab-ci.yml)
+- CI pipeline: [.github/workflows/main.yml](https://github.com/DLR-KI/crack-tip-localization/blob/main/.github/workflows/main.yml)
 
 To easily run these tests locally, use:
 

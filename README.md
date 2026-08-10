@@ -164,7 +164,7 @@ uv run python -m crackmnist_eccv.plot_seaborn_automated \
 
 ## 7. Citation
 
-Please use the included `CITATION.cff` file or click **"Cite this repository"** on GitLab to export a citation in your preferred format.
+Please use the included `CITATION.cff` file or click **"Cite this repository"** on GitHub to export a citation in your preferred format.
 
 ---
 
